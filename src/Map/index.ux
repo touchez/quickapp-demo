@@ -1,0 +1,152 @@
+<template>
+  <div class="map-container">
+    <map class="map" markers="{{markers}}" latitude="{{latitude}}" longitude="{{longitude}}" scale="18"></map>
+    <div class="map-topbar">
+      <text class="tips">手动合上车锁即可完成还车，结束计费</text>
+      <div class="statebar">
+        <text class="statebar-item">{{distance}}米\n骑行距离</text>
+        <text class="statebar-item">{{time}}\n骑行时间</text>
+        <div class="btn-box">
+          <text class="btn" @click="clickLock">{{lock}}</text>
+        </div>
+      </div>
+      <div class="statebar2">
+        <text class="bar2-text">单车：{{id}}</text>
+        <text class="bar2-text">预计：￥{{price}}元</text>
+      </div>
+    </div>
+  </div>
+</template>
+<style>
+.map {
+  width: 100%;
+  height: 100%;
+}
+.map-topbar {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  height: 250px;
+}
+.tips {
+  height: 100px;
+  text-align: center;
+  border-bottom: 1px solid #eeeeee;
+}
+.statebar {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+.statebar-item {
+  text-align: center;
+  width: 32%;
+  height: 100%;
+}
+.btn-box {
+  width: 32%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn {
+  background-color: #f8f8f8;
+  height: 80px;
+  width: 120px;
+  text-align: center;
+}
+text {
+  color: #000000;
+}
+.statebar2 {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0504f;
+  height: 100px;
+  padding: 0 20px;
+}
+.bar2-text {
+  color: #ffffff;
+}
+</style>
+<script>
+import geolocation from '@system.geolocation'
+export default {
+  private: {
+    latitude: '26.860006',
+    longitude: '100.225946',
+    distance: '0',
+    time: '0min',
+    lock: '上锁',
+    id: '2220021212',
+    price: '1',
+    startTime: '',
+    endTime: '',
+    intervel: '',
+    markers: [{
+      latitude: '26.860006',
+      longitude: '100.225946',
+      iconPath: 'https://doc.quickapp.cn/assets/images/logo.png'
+    }]
+  },
+  /**
+   * 当用户点击菜单按钮时触发，调用app中定义的方法showMenu
+   * 注意：使用加载器测试`创建桌面快捷方式`功能时，请先在`系统设置`中打开`应用加载器`的`桌面快捷方式`权限
+   */
+  getLocation() {
+    const that = this
+    geolocation.getLocation({
+      success: function (data) {
+        console.info(`handling success: longitude = ${data.longitude}, latitude = ${data.latitude}`)
+        that.latitude = data.latitude
+        that.longitude = data.longitude
+        that.markers.push({
+          latitude: data.latitude,
+          longitude: data.longitude,
+          iconPath: '../Common/marker.png'
+        })
+      },
+      fail: function (data, code) {
+        console.info(`handling fail, code = ${code}`)
+      }
+    })
+  },
+  clickLock() {
+    this.endTime = new Date().getTime()
+    clearInterval(this.intervel)
+  },
+  timer() {
+    let now = new Date().getTime()
+    let passTime = now - this.startTime
+
+    let hours = Math.floor((passTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    let minutes = Math.floor((passTime % (1000 * 60 * 60)) / (1000 * 60))
+    let seconds = Math.floor((passTime % (1000 * 60)) / 1000)
+
+    let res = ''
+
+    if (hours > 0) {
+      res = res + hours + 'h'
+    }
+    if (minutes > 0) {
+      res = res + minutes + 'm'
+    }
+    if (seconds > 0) {
+      res = res + seconds + 's'
+    }
+
+    this.time = res
+  },
+  onShow() {
+    this.getLocation()
+    this.startTime = new Date().getTime()
+    this.intervel = setInterval(() => {
+      this.timer()
+    }, 1000)
+
+  },
+}
+</script>

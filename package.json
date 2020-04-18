@@ -1,0 +1,28 @@
+{
+  "name": "demo3",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": ">=8.10"
+  },
+  "scripts": {
+    "start": "hap server & hap watch",
+    "build": "hap build",
+    "release": "hap release",
+    "server": "hap server",
+    "watch": "hap watch",
+    "lint": "eslint --format codeframe --fix --ext .ux,.js src/"
+  },
+  "devDependencies": {
+    "@types/quickapp": "git+https://github.com/vivoquickapp/quickapp-types.git",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-ux": "^0.0.2",
+    "hap-toolkit": "^0.7.0"
+  },
+  "dependencies": {
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.2",
+    "scss-loader": "0.0.1"
+  }
+}
