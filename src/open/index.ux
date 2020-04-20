@@ -1,0 +1,82 @@
+<template>
+  <!-- template里只能有一个根节点 -->
+  <div class="demo-page">
+    <!-- <text class="title">欢迎打开{{title}}</text> -->
+    <text class="title">请稍等，正在开锁中</text>
+    <image src="../Common/aa.gif"></image>
+    <!-- 点击跳转详情页 -->
+    <input class="btn" type="button" value="取消开锁" onclick="routeDetail" />
+  </div>
+</template>
+
+<script>
+import router from '@system.router'
+import fetch from '@system.fetch'
+
+export default {
+  // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖
+  private: {
+    title: '示例页面',
+    time:3,
+    timer:null
+  },
+  routeDetail () {
+    // 跳转到应用内的某个页面，router用法详见：文档->接口->页面路由
+    router.push ({
+      uri: '/openSuccess'
+    })
+  },
+  onReady(){
+    fetch.fetch({
+      url: 'https://touchez.cn:8090/pyapi/openlock',
+      responseType: 'text',
+      success: function(response) {
+        console.log(`the status code of the response: ${response.code}`)
+        console.log(`the data of the response: ${response.data}`)
+        console.log(
+          `the headers of the response: ${JSON.stringify(response.headers)}`
+        )
+      },
+      fail: function(data, code) {
+        console.log(`handling fail, errMsg = ${data}`)
+        console.log(`handling fail, errCode = ${code}`)
+      }
+    })
+    this.timer=setInterval(this.go.bind(this),1250)
+  },
+  go(){
+    if(this.time>0){
+      this.time--
+    }else{
+      clearInterval(this.timer)
+      router.push({
+        uri:'/openSuccess'
+      })
+    }
+  }
+}
+</script>
+
+<style>
+  .demo-page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title {
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    width: 550px;
+    height: 86px;
+    margin-top: 75px;
+    border-radius: 43px;
+    background-color: #09ba07;
+    font-size: 30px;
+    color: #ffffff;
+  }
+</style>

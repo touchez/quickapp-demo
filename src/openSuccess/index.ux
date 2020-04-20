@@ -1,0 +1,76 @@
+<template>
+ <!-- template里只能有一个根节点 -->
+  <div class="demo-page">
+    <!-- <text class="title">欢迎打开{{title}}</text> -->
+    <text class="title">开锁成功，可以开始骑行</text>
+    <image src="../Common/kkk.png"></image>
+     <input class="btn" type="button" value="查看骑行详情" onclick="routeDetail" />
+  </div>
+</template>
+
+<script>
+import router from '@system.router'
+
+export default {
+  private: {
+    text: '开锁成功界面',
+    time:3,
+    timer:null,
+  },
+  /**
+   * 当用户点击菜单按钮时触发，调用app中定义的方法showMenu
+   * 注意：使用加载器测试`创建桌面快捷方式`功能时，请先在`系统设置`中打开`应用加载器`的`桌面快捷方式`权限
+   */
+  onMenuPress() {
+    this.$app.$def.showMenu()
+  },
+  routeDetail () {
+    // 跳转到应用内的某个页面，router用法详见：文档->接口->页面路由
+    router.push ({
+      uri: '/open'
+    })
+  },
+  onReady(){
+    this.timer=setInterval(this.go.bind(this),1250)
+  },
+  go(){
+    if(this.time>0){
+      this.time--
+    }else{
+      clearInterval(this.timer)
+      router.push({
+        uri:'/open'
+      })
+    }
+  }
+}
+</script>
+
+<style>
+  .demo-page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title {
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  image {
+    height: 400px;
+    width: 550px;
+  }
+
+  .btn {
+    width: 550px;
+    height: 86px;
+    margin-top: 75px;
+    border-radius: 43px;
+    background-color: #09ba07;
+    font-size: 30px;
+    color: #ffffff;
+  }
+</style>

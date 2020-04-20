@@ -38,6 +38,12 @@
       },
       "Map": {
         "component": "index"
+      },
+      "open": {
+        "component": "index"
+      },
+      "openSuccess": {
+        "component": "index"
       }
     },
     "widgets": {
@@ -67,6 +73,12 @@
       },
       "Map": {
         "titleBarText": "Map"
+      },
+      "open": {
+        "titleBarText": "open"
+      },
+      "openSuccess": {
+        "titleBarText": "openSuccess"
       }
     }
   }
