@@ -41,6 +41,12 @@
       },
       "MapHome": {
         "component": "index"
+      },
+      "open": {
+        "component": "index"
+      },
+      "openSuccess": {
+        "component": "index"
       }
     },
     "widgets": {
@@ -73,6 +79,12 @@
       },
       "MapHome": {
         "titleBarText": "MapHome"
+      },
+      "open": {
+        "titleBarText": "open"
+      },
+      "openSuccess": {
+        "titleBarText": "openSuccess"
       }
     }
   }
