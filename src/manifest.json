@@ -25,7 +25,7 @@
     "logLevel": "log"
   },
   "router": {
-    "entry": "Map",
+    "entry": "MapHome",
     "pages": {
       "Demo": {
         "component": "index"
@@ -37,6 +37,9 @@
         "component": "index"
       },
       "Map": {
+        "component": "index"
+      },
+      "MapHome": {
         "component": "index"
       }
     },
@@ -67,6 +70,9 @@
       },
       "Map": {
         "titleBarText": "Map"
+      },
+      "MapHome": {
+        "titleBarText": "MapHome"
       }
     }
   }
