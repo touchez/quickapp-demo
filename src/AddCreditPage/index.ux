@@ -17,7 +17,10 @@
     </div>
 
     <!-- 点击充值 -->
-    <input style="left: 25%" class="btn" type="button" value="确认充值" onclick="addCredit" />
+    <div class="btn-box" style="width:100%;display:flex;justify-content:center;">
+      <input style="left: 50%" class="btn" type="button" value="确认充值" onclick="addCredit" />
+    </div>
+    
   </div>
 </template>
 

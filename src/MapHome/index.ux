@@ -55,6 +55,7 @@
 <script>
 import prompt from '@system.prompt'
 import barcode from '@system.barcode'
+import router from '@system.router'
 
 const fakeBike = [{
   latitude: '-0.001',

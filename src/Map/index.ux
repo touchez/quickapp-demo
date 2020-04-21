@@ -1,6 +1,6 @@
 <template>
   <div class="map-container">
-    <map class="map" markers="{{markers}}" latitude="{{latitude}}" longitude="{{longitude}}" scale="18"></map>
+    <map class="map" id="map" markers="{{markers}}" latitude="{{latitude}}" longitude="{{longitude}}" scale="18" showmylocation="true"></map>
     <div class="map-topbar">
       <text class="tips">手动合上车锁即可完成还车，结束计费</text>
       <div class="statebar">
@@ -73,7 +73,7 @@ text {
 }
 </style>
 <script>
-import geolocation from '@system.geolocation'
+import prompt from '@system.prompt'
 export default {
   private: {
     latitude: '26.860006',
@@ -93,22 +93,29 @@ export default {
     }]
   },
   getLocation() {
-    const that = this
-    geolocation.getLocation({
-      success: function (data) {
-        console.info(`handling success: longitude = ${data.longitude}, latitude = ${data.latitude}`)
-        that.latitude = data.latitude
-        that.longitude = data.longitude
-        that.markers.push({
-          latitude: data.latitude,
-          longitude: data.longitude,
-          iconPath: '../Common/marker.png'
-        })
-      },
-      fail: function (data, code) {
-        console.info(`handling fail, code = ${code}`)
-      }
-    })
+    let that = this
+    // 移动到当前定位点
+    this.$element('map').moveToMyLocation()
+    // 获取中心点坐标，设置延时等待地图移动到我的位置即可获取我的位置坐标
+    setTimeout(() => {
+      this.$element('map').getCenterLocation({
+        success(res) {
+          prompt.showToast({
+            message: `获取当前坐标成功`
+          })
+          that.latitude = res.latitude
+          that.longitude = res.longitude
+        },
+        fail(reason) {
+          prompt.showToast({
+            message: `获取失败，reason = ${reason}`
+          })
+        },
+        complete() {
+          console.info('complete')
+        }
+      })
+    }, 1000)
   },
   clickLock() {
     this.endTime = new Date().getTime()
