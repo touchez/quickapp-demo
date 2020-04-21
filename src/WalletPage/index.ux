@@ -2,7 +2,7 @@
   <div class="whole-page">
     <div class="Wallet-page">
       <div class="money-info">
-        <image src="../common/credit.png" class="image" style="object-fit: cover"></image>
+        <image src="../Common/credit.png" class="image" style="object-fit: cover"></image>
         <div id="info">
            <text style="font-size: 50px; color: 000000; width: 200px" 
         class="title">￥{{money}}元</text>
@@ -13,34 +13,34 @@
 
       <div class="coupon-info">
         <div class="func-list">
-          <image src="../common/mywallet.png" class="smallimage" style="object-fit: cover"></image>
+          <image src="../Common/mywallet.png" class="smallimage" style="object-fit: cover"></image>
           <div class="buttonArea" onclick="goToCredit">
             <text style="margin-left: 30px" class="title">我的卡包</text>
-            <image src="../common/rightarrow.png" class="smallimage" style="object-fit: cover"></image>
+            <image src="../Common/rightarrow.png" class="smallimage" style="object-fit: cover"></image>
           </div>
         </div>
         <div class="div"></div>
         <div class="func-list">
-          <image src="../common/coupon.png" class="smallimage" style="object-fit: cover"></image>
+          <image src="../Common/coupon.png" class="smallimage" style="object-fit: cover"></image>
           <div class="buttonArea" onclick="goToCredit">
             <text style="margin-left: 30px; width: 160px" class="title">我的优惠券</text>
-            <image src="../common/rightarrow.png" class="smallimage" style="object-fit: cover"></image>
+            <image src="../Common/rightarrow.png" class="smallimage" style="object-fit: cover"></image>
           </div>
         </div>
         <div class="div"></div>
         <div class="func-list">
-          <image src="../common/smallcredit.png" class="smallimage" style="object-fit: cover"></image>
+          <image src="../Common/smallcredit.png" class="smallimage" style="object-fit: cover"></image>
           <div class="buttonArea" onclick="goToCredit">
             <text style="margin-left: 30px" class="title">余额充值</text>
-            <image src="../common/rightarrow.png" class="smallimage" style="object-fit: cover"></image>
+            <image src="../Common/rightarrow.png" class="smallimage" style="object-fit: cover"></image>
           </div>
         </div>
         <div class="div"></div>
         <div class="func-list">
-          <image src="../common/sale.png" class="smallimage" style="object-fit: cover"></image>
+          <image src="../Common/sale.png" class="smallimage" style="object-fit: cover"></image>
           <div class="buttonArea" onclick="goToCredit">
             <text style="margin-left: 30px" class="title">当前活动</text>
-            <image src="../common/rightarrow.png" class="smallimage" style="object-fit: cover"></image>
+            <image src="../Common/rightarrow.png" class="smallimage" style="object-fit: cover"></image>
           </div>
         </div>
         <div class="div"></div>
@@ -127,7 +127,7 @@ export default {
 
   .money-info {
     position: absolute;
-    top: 115px; 
+    top: 0; 
     width: 100%;
     height: 200px;
     flex-direction:row;
@@ -138,7 +138,7 @@ export default {
 
   .coupon-info {
     position: absolute;
-    top: 350px; 
+    top: 220px; 
     width: 100%;
     height: 100%;
     flex-direction:column;
@@ -152,6 +152,7 @@ export default {
     margin-left: 25px;
     width: 90%;
     height: 100px;
+    display: flex;
     flex-direction:row;
     justify-content: flex-start;
     align-items: center;
@@ -188,6 +189,8 @@ export default {
   }
 
   .Wallet-page {
+    width: 100%;
+    height: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
