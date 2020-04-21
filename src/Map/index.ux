@@ -74,15 +74,17 @@ text {
 </style>
 <script>
 import prompt from '@system.prompt'
+import router from '@system.router'
 export default {
   private: {
+    howmanythirty: 0,
     latitude: '26.860006',
     longitude: '100.225946',
     distance: '0',
     time: '0min',
     lock: '上锁',
     id: '2220021212',
-    price: '1',
+    price: '2',
     startTime: '',
     endTime: '',
     intervel: '',
@@ -119,7 +121,19 @@ export default {
   },
   clickLock() {
     this.endTime = new Date().getTime()
+    let passTime = this.endTime - this.startTime
+    this.howmanythirty = Math.floor(((passTime % (1000 * 60 * 60)) / (1000 * 60)) % 30);
+    if (this.howmanythirty == 0) this.price = 2
+    else this.price = this.howmanythirty * 2
     clearInterval(this.intervel)
+    this.$app.$data.money -= this.price
+    router.replace ({
+      uri: '/PayPage',
+      params: {
+        cost: this.price,
+        duration: this.time
+      }
+    })
   },
   timer() {
     let now = new Date().getTime()
@@ -142,6 +156,7 @@ export default {
     }
 
     this.time = res
+
   },
   onShow() {
     this.getLocation()

@@ -42,12 +42,21 @@ export default {
   },
   addCredit () {
     // 跳转到应用内的某个页面，router用法详见：文档->接口->页面路由
+    let now = new Date()
+    let year = now.getFullYear()
+    let month = now.getMonth()
+    let day = now.getDate()
+    let hour = now.getHours()
+    let minute = now.getMinutes()
+    let second = now.getSeconds()
+    let timenow = month + '/' + day + '/' +year + ' ' +  hour + ':' + minute + ':' + second
     if(this.addmoney){
       this.$app.$data.money += this.addmoney,
       router.replace ({
         uri: '/SuccessPage',
         params: {
-          credit: this.addmoney
+          credit: this.addmoney,
+          addtime: timenow
         }
       })
     }

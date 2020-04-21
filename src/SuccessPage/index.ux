@@ -1,6 +1,6 @@
 <template>
   <div class="whole-page">
-    <div class="pay-page">
+    <!-- <div class="pay-page"> -->
       <div class="cost-info">
         <image src="../Common/ok.png" class="image" style="object-fit: cover"></image>
         <text style="font-size: 30px; color: #f0ffff; width: 180px" 
@@ -8,7 +8,7 @@
       </div>
       <div style="top: 400px;" class="common-info">
         <text class="title">充值时间</text>
-        <text style="text-align: right; width: 200px" class="title">{{(duration-duration%60)/60}} min {{duration%60}} s</text>
+        <text style="text-align: right; width: 200px" class="title">{{addtime}}</text>
       </div>
       <div class="div"></div>
       <div style="top: 500px;" class="common-info">
@@ -23,7 +23,7 @@
           <text style="text-align: right; width: 200px" class="title">{{money}} 元</text>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
     <!-- 点击跳转首页 -->
     <input class="btn" type="button" value="返回我的钱包" onclick="routeEntry" />
   </div>
@@ -35,6 +35,7 @@ import router from '@system.router'
 export default {
   public: {
     credit: 2,
+    addtime: ''
   },
   protected: {
     icon: null
