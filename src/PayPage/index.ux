@@ -1,0 +1,137 @@
+<template>
+  <div class="whole-page">
+    <div class="pay-page">
+      <div class="cost-info">
+        <image src="../common/ok.png" class="image" style="object-fit: cover"></image>
+        <text style="font-size: 30px; color: #f0ffff; width: 180px" 
+        class="title">支付成功</text>
+      </div>
+      <div style="top: 400px;" class="common-info">
+        <text class="title">骑行时间</text>
+        <text style="text-align: right; width: 200px" class="title">{{(duration-duration%60)/60}} min {{duration%60}} s</text>
+      </div>
+      <div class="div"></div>
+      <div style="top: 500px;" class="common-info">
+        <text class="title">支付金额</text>
+        <text style="text-align: right; width: 200px" class="title">{{cost}} 元</text>
+      </div>
+      <div class="div"></div>
+      <div style="top: 600px; height: 100px; border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;" class="common-info">
+        <text class="title">钱包余额</text>
+        <div>
+          <text style="text-align: right; width: 200px" class="title">{{money}} 元</text>
+        </div>
+      </div>
+    </div>
+    <!-- 点击跳转首页 -->
+    <input class="btn" type="button" value="返回首页" onclick="routeEntry" />
+  </div>
+</template>
+
+<script>
+import router from '@system.router'
+
+export default {
+  protected: {
+    icon: null
+  },
+  // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖
+  private: {
+    title: '示例页面',
+    duration: 186,
+    cost: 2,
+    moneynow: 0
+  },
+  routeEntry () {
+    // 跳转到应用内的某个页面，router用法详见：文档->接口->页面路由
+    router.push ({
+      uri: '/WalletPage'
+    })
+  },
+  onInit () {
+    // 设置标题栏
+  },
+}
+</script>
+
+<style>
+  .div {
+    position: relative;
+  }
+
+  .div {
+    position: absolute;
+    left: 30px;
+    bottom: 0;
+    right: 0;
+    width: 10%;
+    height: 5px;
+    background-color: #dcdcdc;
+  }
+
+  .image {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+  }
+
+  .whole-page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #D8D8E0;
+  }
+
+  .cost-info {
+    position: absolute;
+    top: 200px; 
+    width: 90%;
+    height: 200px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(130, 194, 159);
+    color:#f0ffff;
+  }
+
+  .common-info {
+    position: absolute;
+    width: 90%;
+    /* top: 400px; */
+    height: 95px;
+    flex-direction:row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f0ffff;
+  }
+
+  .cost-info .text {
+    font-size: 20px;
+  }
+
+  .pay-page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title {
+    width: 140px;
+    font-size: 30px;
+    color: #000000;
+    text-align: center;
+  }
+
+  .btn {
+    width: 550px;
+    height: 86px;
+    margin-top: 500px;
+    border-radius: 20px;
+    background-color: rgb(130, 194, 159);
+    font-size: 30px;
+    color: #ffffff;
+  }
+</style>

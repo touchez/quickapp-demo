@@ -10,7 +10,7 @@
         <text class="scan-text">扫码用车</text>
       </div>
       <div class="wallet item">
-        <image class="icon-image" src="../Common/wallet.png"></image>
+        <image class="icon-image" @click="goToWallet" src="../Common/wallet.png"></image>
       </div>
     </div>
   </div>
@@ -117,6 +117,11 @@ export default {
         longitude: Number(this.longitude) + Number(loc.longitude),
         iconPath: '../Common/bike.png'
       })
+    })
+  },
+  goToWallet () {
+    router.push ({
+      uri: '/WalletPage'
     })
   },
   scan() {

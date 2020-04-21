@@ -1,0 +1,182 @@
+<template>
+  <div class="whole-page" id="popup1">
+    <div class="items">
+      <text class="title">充值金额</text>
+    </div>
+    <div style="margin-left: 0; justify-content: space-around;" class="items">
+       <input if="{{addmoney === 100}}" class="value-btn-selected" type="button" value="100元" onclick="addmoney100" />
+       <input else class="value-btn" type="button" value="100元" onclick="addmoney100" />
+       <input if="{{addmoney === 50}}" class="value-btn-selected" type="button" value="50元" onclick="addmoney50" />
+       <input else class="value-btn" type="button" value="50元" onclick="addmoney50" />
+    </div>
+    <div style="margin-left: 0; justify-content: space-around;" class="items">
+      <input if="{{addmoney === 20}}" class="value-btn-selected" type="button" value="20元" onclick="addmoney20" />
+      <input else class="value-btn" type="button" value="20元" onclick="addmoney20" />
+      <input if="{{addmoney === 5}}" class="value-btn-selected" type="button" value="5元" onclick="addmoney5" />
+      <input else class="value-btn" type="button" value="5元" onclick="addmoney5" />
+    </div>
+
+    <!-- 点击充值 -->
+    <input style="left: 25%" class="btn" type="button" value="确认充值" onclick="addCredit" />
+  </div>
+</template>
+
+<script>
+import router from '@system.router'
+
+export default {
+  public: {
+    gettime: ''
+  },
+  protected: {
+    icon: null
+  },
+  // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖
+  private: {
+    addmoney: 0,
+    cost: 2,
+    moneynow: 0
+  },
+  addCredit () {
+    // 跳转到应用内的某个页面，router用法详见：文档->接口->页面路由
+    if(this.addmoney){
+      this.$app.$data.money += this.addmoney,
+      router.replace ({
+        uri: '/SuccessPage',
+        params: {
+          credit: this.addmoney
+        }
+      })
+    }
+  },
+  addmoney100 () {
+    this.addmoney = 100
+  },
+  addmoney50 () {
+    this.addmoney = 50
+  },
+  addmoney20 () {
+    this.addmoney = 20
+  },
+  addmoney5 () {
+    this.addmoney = 5
+  },
+  onInit () {
+    // 设置标题栏
+    this.moneynow = this.money
+  },
+}
+</script>
+
+<style>
+  #icon {
+    width: 100px;
+    height: 60px;
+  }
+
+  .whole-page {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    color:#000000;
+    /* justify-content: center; */
+    /* align-items: center; */
+    background-color: #f0ffff;
+  }
+
+  .items {
+    margin-top: 50px; 
+    margin-left: 20px;
+    width: 100%;
+    height: 100px;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .money-info {
+    position: absolute;
+    top: 115px; 
+    width: 100%;
+    height: 100%;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+    background-color:#f0ffff;
+  }
+
+  .coupon-info {
+    position: absolute;
+    top: 350px; 
+    width: 100%;
+    height: 100%;
+    flex-direction:column;
+    /* justify-content: space-between; */
+    align-items: center;
+    background-color:#f0ffff;
+  }
+
+  .func-module {
+    position: absolute;
+    width: 90%;
+    height: 300px;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: center;
+    background-color:#f0ffff;
+  }
+
+  .value-btn {
+    width: 320px;
+    height: 100px;
+    font-size: 35px;
+    border-radius: 8px;
+    border-color: rgb(130, 194, 159);
+    border-width: 3px;
+    background-color:#f0ffff;
+    color: rgb(130, 194, 159);
+  }
+
+  .value-btn-selected {
+    width: 320px;
+    height: 100px;
+    font-size: 35px;
+    border-radius: 8px;
+    border-color: rgb(130, 194, 159);
+    border-width: 5px;
+    background-color:rgb(182, 218, 204);
+    color: rgb(116, 163, 137);
+  }
+
+  #info {
+    flex-direction:column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color:#f0ffff;
+    color:#000000;
+  }
+
+  .Wallet-page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title {
+    width: 140px;
+    font-size: 30px;
+    color: #000000;
+    text-align: left;
+  }
+
+  .btn {
+    width: 50%;
+    height: 86px;
+    margin-top: 200px;
+    border-radius: 20px;
+    background-color: rgb(130, 194, 159);
+    font-size: 30px;
+    color: #ffffff;
+  }
+
+</style>

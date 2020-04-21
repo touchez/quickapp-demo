@@ -22,11 +22,26 @@
     }
   ],
   "config": {
-    "logLevel": "log"
+    "logLevel": "log",
+    "data": {
+      "money": 100
+    }
   },
   "router": {
     "entry": "MapHome",
     "pages": {
+      "SuccessPage": {
+        "component": "index"
+      },
+      "AddCreditPage": {
+        "component": "index"
+      },
+      "WalletPage": {
+        "component": "index"
+      },
+      "PayPage": {
+        "component": "index"
+      },
       "Demo": {
         "component": "index"
       },
@@ -64,6 +79,22 @@
     "titleBarTextColor": "#414141",
     "menu": true,
     "pages": {
+      "SuccessPage": {
+        "titleBarText": "支付情况",
+        "menu": false
+      },
+      "AddCreditPage": {
+        "titleBarText": "钱包充值",
+        "menu": false
+      },
+      "WalletPage": {
+        "titleBarText": "我的钱包",
+        "menu": false
+      },
+      "PayPage": {
+        "titleBarText": "支付详情",
+        "menu": false
+      },
       "Demo": {
         "titleBarText": "示例页",
         "menu": false
