@@ -28,7 +28,7 @@
     }
   },
   "router": {
-    "entry": "Map",
+    "entry": "MapHome",
     "pages": {
       "SuccessPage": {
         "component": "index"
